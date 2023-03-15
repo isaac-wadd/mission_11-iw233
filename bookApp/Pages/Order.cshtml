@@ -1,0 +1,46 @@
+
+@page
+@model bookApp.Pages.OrderModel
+@{
+    ViewData["Title"] = "my cart"
+}
+
+<h3>your cart</h3>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>title</th>
+            <th>quantity</th>
+            <th>cost</th>
+            <th>subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var b in Model.cart.items) {
+            <tr>
+                <td>@b.book.Title</td>
+                <td>@b.quantity</td>
+                <td>@(b.book.Price.ToString("c"))</td>
+                <td>@((b.quantity * b.book.Price).ToString("c"))</td>
+                <td class="text-center">
+                    <form method="post" asp-page-handler="remove">
+                        <input type="hidden" name="BookId" value="@b.book.BookId" />
+                        <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+                        <button class="btn btn-primary btn-danger" type="submit">remove</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td>Cart Total:</td>
+            <td colspan="3">@Model.cart.getTotal().ToString("c")</td>
+        </tr>
+    </tfoot>
+</table>
+<div>
+    <a class="btn btn-primary" href="@Model.ReturnUrl">order more</a>
+    <a class="btn btn-primary" asp-controller="Order" asp-action="Checkout">check out</a>
+</div>

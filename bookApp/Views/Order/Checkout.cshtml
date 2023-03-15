@@ -1,0 +1,47 @@
+
+@{
+    Layout = "_CheckoutLayout";
+    ViewData["Title"] = "checkout";
+}
+
+@model Order
+
+<br>
+<h4 class="text-center">cart checkout</h4>
+<br>
+<form method="post" asp-controller="Order" asp-action="Checkout">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <h5 class="text-center">personal</h5>
+    <div class="form-group">
+        <label asp-for="name">name:</label>
+        <input type="text" class="form-control" asp-for="name" />
+    </div>
+    <h5 class="text-center">address</h5>
+    <div class="form-group">
+        <label asp-for="addressLine1">address line 1:</label>
+        <input type="text" class="form-control" asp-for="addressLine1" />
+    </div>
+    <div class="form-group">
+        <label asp-for="addressLine2">address line 2:</label>
+        <input type="text" class="form-control" asp-for="addressLine2" />
+    </div>
+    <div class="form-group">
+        <label asp-for="city">city:</label>
+        <input type="text" class="form-control" asp-for="city" />
+    </div>
+    <div class="form-group">
+        <label asp-for="state">state:</label>
+        <input type="text" class="form-control" asp-for="state" />
+    </div>
+    <div class="form-group">
+        <label asp-for="zip">zip code:</label>
+        <input type="text" class="form-control" asp-for="zip" />
+    </div>
+    <div class="form-group">
+        <label asp-for="country">country:</label>
+        <input type="text" class="form-control" asp-for="country" />
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">check out</button>
+    <br>
+</form>

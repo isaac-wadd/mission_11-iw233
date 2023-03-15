@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "home";
+}
+
+<br>
+<h1>Books</h1>
+
+@model BooksViewModel
+
+@foreach (Books b in Model.books) {
+    <partial name="bookSummary" model="b" />
+}
+<br>
+<br>
+<div class="text-center">
+    <div page-model="@Model.pagesInfo" page-action="Index"></div>
+</div>
+<br>

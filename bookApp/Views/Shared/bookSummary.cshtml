@@ -1,0 +1,27 @@
+
+@{}
+
+@model Books
+
+<br>
+<div class="card" style="width: 30rem;">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Title</h5>
+        <h6 class="card-subtitle mb-2">@Model.Author</h6>
+        <ul class="card-text list-group">
+            <li class="list-group-item">Publisher: @Model.Publisher</li>
+            <li class="list-group-item">Isbn: @Model.Isbn</li>
+            <li class="list-group-item">Classification: @Model.Classification.ClassificationName</li>
+            <li class="list-group-item">Category: @Model.Category.CategoryName</li>
+            <li class="list-group-item">Pages: @Model.PageCount</li>
+            <li class="list-group-item">Price: @Model.Price.ToString("c")</li>
+        </ul>
+    </div>
+    <form method="post" asp-page="/Order">
+        <input type="hidden" asp-for="@Model.BookId" />
+        <input type="hidden" name="returnURL" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+        <span class="card-text">
+            <button type="submit" class="btn btn-primary btn-sm">add to cart</button>
+        </span>
+    </form>
+</div>
